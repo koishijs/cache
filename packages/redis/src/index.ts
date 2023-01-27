@@ -96,7 +96,7 @@ namespace RedisCache {
 
   export const Config: Schema<Config> = Schema.object({
     endpoint: Schema.string().role('link').description('Redis 服务器地址。').default('redis://localhost:6379'),
-    prefix: Schema.string().description('Redis 数据键的前缀。').default('koishi:'),
+    prefix: Schema.string().description('Redis 键名前缀。').default('koishi:'),
   })
 }
 
