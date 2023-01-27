@@ -1,0 +1,54 @@
+{
+  "name": "koishi-plugin-cache-database",
+  "description": "Database Cache Service",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "author": "Shigma <shigma10826@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koishijs/cache.git",
+    "directory": "packages/database"
+  },
+  "bugs": {
+    "url": "https://github.com/koishijs/cache/issues"
+  },
+  "homepage": "https://cache.koishi.chat/plugins/database.html",
+  "keywords": [
+    "bot",
+    "chatbot",
+    "koishi",
+    "plugin",
+    "cache",
+    "client",
+    "storage"
+  ],
+  "koishi": {
+    "category": "storage",
+    "description": {
+      "en": "Database Cache Service",
+      "zh": "基于数据库的缓存服务"
+    },
+    "service": {
+      "implements": [
+        "cache"
+      ],
+      "required": [
+        "database"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "koishi": "^4.10.0"
+  },
+  "devDependencies": {
+    "koishi": "^4.11.2"
+  },
+  "dependencies": {
+    "@koishijs/cache": "^0.1.1"
+  }
+}
