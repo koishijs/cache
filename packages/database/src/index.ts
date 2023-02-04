@@ -23,7 +23,7 @@ class DatabaseCache extends Cache {
     ctx.model.extend('cache', {
       table: 'string(63)',
       key: 'string(63)',
-      value: 'string',
+      value: 'text',
       expire: 'timestamp',
     }, {
       primary: ['table', 'key'],

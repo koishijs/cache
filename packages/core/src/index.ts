@@ -39,7 +39,7 @@ namespace CacheTable {
 
 abstract class Cache extends Service {
   constructor(ctx: Context) {
-    super(ctx, 'cache')
+    super(ctx, '__cache__')
   }
 
   public cache<K extends keyof Tables>(table?: K, config?: CacheTable.Config): CacheTable<Tables[K]> {
