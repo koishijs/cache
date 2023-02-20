@@ -7,6 +7,13 @@
 缓存服务的用法非常简单：
 
 ```ts
+// 扩展 foo 字段
+declare module '@koishijs/cache' {
+    interface Tables{
+        foo: any
+    }
+}
+
 // 创建一个命名空间
 const cache = ctx.cache('foo', { maxAge: Time.hour })
 await cache.set('bar', 114514)
