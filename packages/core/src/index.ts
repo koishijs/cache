@@ -11,7 +11,7 @@ export interface Tables {
   default: any
 }
 
-class CacheTable<T> {
+export class CacheTable<T> {
   constructor(public ctx: Context, public table: keyof Tables, public config: CacheTable.Config = {}) {}
 
   clear() {
@@ -31,7 +31,7 @@ class CacheTable<T> {
   }
 }
 
-namespace CacheTable {
+export namespace CacheTable {
   export interface Config {
     maxAge?: number
   }
