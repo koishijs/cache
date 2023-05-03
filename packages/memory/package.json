@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-cache-memory",
   "description": "Memory-based Cache Service",
-  "version": "1.0.2",
+  "version": "2.0.0-alpha.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -43,9 +43,9 @@
     "koishi": "^4.10.0"
   },
   "devDependencies": {
-    "koishi": "^4.12.0"
+    "koishi": "^4.12.4"
   },
   "dependencies": {
-    "@koishijs/cache": "^0.1.4"
+    "@koishijs/cache": "^2.0.0-alpha.0"
   }
 }
