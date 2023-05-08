@@ -1,32 +1,32 @@
 {
-  "description": "Koishi 缓存服务",
+  "description": "",
   "head": [
     [
-      "link",
+      "",
       {
-        "rel": "icon",
-        "href": "https://koishi.chat/logo.png"
+        "rel": "",
+        "href": ""
       }
     ],
     [
-      "link",
+      "",
       {
-        "rel": "manifest",
-        "href": "/zh-CN/manifest.json"
+        "rel": "",
+        "href": ""
       }
     ],
     [
-      "meta",
+      "",
       {
-        "name": "theme-color",
-        "content": "#5546a3"
+        "name": "",
+        "content": ""
       }
     ]
   ],
   "themeConfig": {
     "editLink": {
       "text": "Translate this page on Crowdin",
-      "pattern": "https://github.com/koishijs/cache/edit/main/docs/:path"
+      "pattern": ""
     },
     "sidebar": {
       "/": [
@@ -35,11 +35,11 @@
           "items": [
             {
               "text": "Introduction",
-              "link": "/"
+              "link": ""
             },
             {
-              "text": "API",
-              "link": "/api"
+              "text": "",
+              "link": ""
             }
           ]
         },
@@ -47,16 +47,16 @@
           "text": "plugin",
           "items": [
             {
-              "text": "Database",
-              "link": "/plugins/database"
+              "text": "",
+              "link": ""
             },
             {
               "text": "Memory",
-              "link": "/plugins/memory"
+              "link": ""
             },
             {
-              "text": "Redis",
-              "link": "/plugins/redis"
+              "text": "",
+              "link": ""
             }
           ]
         },
@@ -64,8 +64,8 @@
           "text": "About",
           "items": [
             {
-              "text": "Koishi 官网",
-              "link": "https://koishi.chat"
+              "text": "",
+              "link": ""
             }
           ]
         }
