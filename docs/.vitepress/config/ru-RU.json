@@ -1,71 +1,71 @@
 {
-  "description": "Koishi 缓存服务",
+  "description": "",
   "head": [
     [
-      "link",
+      "",
       {
-        "rel": "icon",
-        "href": "https://koishi.chat/logo.png"
+        "rel": "",
+        "href": ""
       }
     ],
     [
-      "link",
+      "",
       {
-        "rel": "manifest",
-        "href": "/zh-CN/manifest.json"
+        "rel": "",
+        "href": ""
       }
     ],
     [
-      "meta",
+      "",
       {
-        "name": "theme-color",
-        "content": "#5546a3"
+        "name": "",
+        "content": ""
       }
     ]
   ],
   "themeConfig": {
     "editLink": {
-      "text": "在 GitHub 编辑此页面",
-      "pattern": "https://github.com/koishijs/cache/edit/main/docs/:path"
+      "text": "",
+      "pattern": ""
     },
     "sidebar": {
       "/": [
         {
-          "text": "指南",
+          "text": "",
           "items": [
             {
-              "text": "介绍",
-              "link": "/"
+              "text": "",
+              "link": ""
             },
             {
-              "text": "API",
-              "link": "/api"
+              "text": "",
+              "link": ""
             }
           ]
         },
         {
-          "text": "插件",
+          "text": "",
           "items": [
             {
-              "text": "Database",
-              "link": "/plugins/database"
+              "text": "",
+              "link": ""
             },
             {
-              "text": "Memory",
-              "link": "/plugins/memory"
+              "text": "",
+              "link": ""
             },
             {
-              "text": "Redis",
-              "link": "/plugins/redis"
+              "text": "",
+              "link": ""
             }
           ]
         },
         {
-          "text": "更多",
+          "text": "",
           "items": [
             {
-              "text": "Koishi 官网",
-              "link": "https://koishi.chat"
+              "text": "",
+              "link": ""
             }
           ]
         }
