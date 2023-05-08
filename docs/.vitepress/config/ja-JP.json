@@ -1,45 +1,45 @@
 {
-  "description": "Koishi 缓存服务",
+  "description": "",
   "head": [
     [
-      "link",
+      "",
       {
-        "rel": "icon",
-        "href": "https://koishi.chat/logo.png"
+        "rel": "",
+        "href": ""
       }
     ],
     [
-      "link",
+      "",
       {
-        "rel": "manifest",
-        "href": "/zh-CN/manifest.json"
+        "rel": "",
+        "href": ""
       }
     ],
     [
-      "meta",
+      "",
       {
-        "name": "theme-color",
-        "content": "#5546a3"
+        "name": "",
+        "content": ""
       }
     ]
   ],
   "themeConfig": {
     "editLink": {
       "text": "Crowdin でこのページの翻訳を修正する",
-      "pattern": "https://github.com/koishijs/cache/edit/main/docs/:path"
+      "pattern": ""
     },
     "sidebar": {
       "/": [
         {
-          "text": "指南",
+          "text": "",
           "items": [
             {
-              "text": "介绍",
-              "link": "/"
+              "text": "",
+              "link": ""
             },
             {
-              "text": "API",
-              "link": "/api"
+              "text": "",
+              "link": ""
             }
           ]
         },
@@ -47,16 +47,16 @@
           "text": "プラグイン",
           "items": [
             {
-              "text": "Database",
-              "link": "/plugins/database"
+              "text": "",
+              "link": ""
             },
             {
               "text": "メモリ",
-              "link": "/plugins/memory"
+              "link": ""
             },
             {
-              "text": "Redis",
-              "link": "/plugins/redis"
+              "text": "",
+              "link": ""
             }
           ]
         },
@@ -64,8 +64,8 @@
           "text": "さらに表示",
           "items": [
             {
-              "text": "Koishi 官网",
-              "link": "https://koishi.chat"
+              "text": "",
+              "link": ""
             }
           ]
         }
