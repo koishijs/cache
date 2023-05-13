@@ -2,24 +2,24 @@
   "description": "",
   "head": [
     [
-      "",
+      "link",
       {
-        "rel": "",
+        "rel": "icon",
         "href": ""
       }
     ],
     [
-      "",
+      "link",
       {
-        "rel": "",
+        "rel": "manifest",
         "href": ""
       }
     ],
     [
-      "",
+      "meta",
       {
-        "name": "",
-        "content": ""
+        "name": "theme-color",
+        "content": "#5546a3"
       }
     ]
   ],
