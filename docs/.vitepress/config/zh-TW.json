@@ -2,14 +2,14 @@
   "description": "Koishi 缓存服务",
   "head": [
     [
-      "連結",
+      "link",
       {
         "rel": "icon",
         "href": "https://koishi.chat/logo.png"
       }
     ],
     [
-      "連結",
+      "link",
       {
         "rel": "manifest",
         "href": "/zh-CN/manifest.json"
