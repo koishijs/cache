@@ -31,10 +31,10 @@
     "sidebar": {
       "/": [
         {
-          "text": "指南",
+          "text": "Developing Guide",
           "items": [
             {
-              "text": "介绍",
+              "text": "Introduction",
               "link": "/"
             },
             {
