@@ -1,4 +1,4 @@
-# 介绍
+# Introduction
 
 @koishijs/cache 提供了统一的数据缓存服务。
 
