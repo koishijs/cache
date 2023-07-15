@@ -19,6 +19,7 @@ class RedisCache extends Cache {
 
   constructor(ctx: Context, private config: RedisCache.Config) {
     super(ctx)
+    this.config.url = this.config.endpoint
   }
 
   private getRedisKey(table: string, key: string) {
