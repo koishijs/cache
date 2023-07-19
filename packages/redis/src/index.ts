@@ -7,12 +7,14 @@ class RedisCache extends Cache {
   private logger = new Logger('redis')
 
   private pool = createPool({
-    async create() {
-      const client = createClient(this.config)
+    create: async () => {
+      const client = createClient({
+        url: this.config.endpoint,
+      })
       await client.connect()
       return client as RedisClientType
     },
-    async destroy(client) {
+    destroy: async (client) => {
       await client.disconnect()
     },
   })
