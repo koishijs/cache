@@ -8,7 +8,9 @@ class RedisCache extends Cache {
 
   private pool = createPool({
     create: async () => {
-      const client = createClient(this.config)
+      const client = createClient({
+        url: this.config.endpoint,
+      })
       await client.connect()
       return client as RedisClientType
     },
