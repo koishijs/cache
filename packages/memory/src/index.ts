@@ -1,9 +1,9 @@
 import { Context, Dict, Schema } from 'koishi'
-import Cache from '@koishijs/cache'
+import Cache, { Tables } from '@koishijs/cache'
 
 interface Entry {
   value: any
-  timer?: NodeJS.Timer
+  timer?: NodeJS.Timeout
 }
 
 class MemoryCache extends Cache {
@@ -52,10 +52,36 @@ class MemoryCache extends Cache {
       delete table[key]
     }
   }
+
+  async keys<K extends 'default'>(table: K): Promise<string[]> {
+    const entries = this.table(table)
+
+    return Object.keys(entries)
+  }
+
+  async values<K extends 'default'>(table: K): Promise<Tables[K][]> {
+    const entries = this.table(table)
+
+    return Object.values(entries).map(entry => entry.value)
+  }
+
+  async entries<K extends 'default'>(table: K): Promise<Record<string, Tables[K]>> {
+    const entries = this.table(table)
+
+    return Object.fromEntries(Object.entries(entries).map(([key, entry]) => [key, entry.value]))
+  }
+
+  async forEach<K extends 'default'>(table: K, callback: (key: string, value: Tables[K]) => void): Promise<void> {
+    const entries = this.table(table)
+
+    for (const key in entries) {
+      callback(key, entries[key].value)
+    }
+  }
 }
 
 namespace MemoryCache {
-  export interface Config {}
+  export interface Config { }
 
   export const Config: Schema<Config> = Schema.object({})
 }

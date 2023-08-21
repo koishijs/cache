@@ -19,6 +19,10 @@ abstract class Cache extends Service {
   abstract get<K extends keyof Tables>(table: K, key: string): Promise<Tables[K]>
   abstract set<K extends keyof Tables>(table: K, key: string, value: Tables[K], maxAge?: number): Promise<void>
   abstract delete<K extends keyof Tables>(table: K, key: string): Promise<void>
+  abstract keys<K extends keyof Tables>(table: K): Promise<string[]>
+  abstract values<K extends keyof Tables>(table: K): Promise<Tables[K][]>
+  abstract entries<K extends keyof Tables>(table: K): Promise<Map<string, Tables[K]>>
+  abstract forEach<K extends keyof Tables>(table: K, callback: (key: string, value: Tables[K]) => void): Promise<void>
 }
 
 export default Cache
