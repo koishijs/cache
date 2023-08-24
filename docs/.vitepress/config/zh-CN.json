@@ -1,10 +1,5 @@
 {
   "description": "Koishi 缓存服务",
-  "head": [
-    ["link", { "rel": "icon", "href": "https://koishi.chat/logo.png" }],
-    ["link", { "rel": "manifest", "href": "/zh-CN/manifest.json" }],
-    ["meta", { "name": "theme-color", "content": "#5546a3" }]
-  ],
   "themeConfig": {
     "editLink": {
       "text": "在 GitHub 编辑此页面",
