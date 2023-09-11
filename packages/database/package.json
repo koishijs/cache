@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-cache-database",
   "description": "Database Cache Service",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -43,12 +43,12 @@
     }
   },
   "peerDependencies": {
-    "koishi": "^4.10.0"
+    "koishi": "^4.14.5"
   },
   "devDependencies": {
-    "koishi": "^4.12.4"
+    "koishi": "^4.14.5"
   },
   "dependencies": {
-    "@koishijs/cache": "^2.0.0"
+    "@koishijs/cache": "^2.1.0"
   }
 }
