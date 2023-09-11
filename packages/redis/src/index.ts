@@ -106,6 +106,7 @@ class RedisCache extends Cache {
     const redisKey = this.getRedisKey(table, '*')
     yield* await this.doInPool(async (client) => {
       const allKeys = await client.keys(redisKey)
+      // TODO optimize this
       const allValues = await Promise.all(allKeys.map(key => client.get(key)))
       return allValues.map(value => this.decode(value))
     })
