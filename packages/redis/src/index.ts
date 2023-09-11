@@ -1,7 +1,7 @@
 import { createPool } from 'generic-pool'
 import { Context, isNullable, Logger, Schema } from 'koishi'
 import { createClient, RedisClientOptions, RedisClientType } from 'redis'
-import Cache, { Tables } from '@koishijs/cache'
+import Cache from '@koishijs/cache'
 
 class RedisCache extends Cache {
   private logger = new Logger('redis')
@@ -39,7 +39,7 @@ class RedisCache extends Cache {
     return JSON.parse(record)
   }
 
-  private async doInPool(action: (client: RedisClientType) => Promise<any>, errActionMessage = 'perform unknown action') {
+  private async doInPool<T>(action: (client: RedisClientType) => Promise<T>, errActionMessage = 'perform unknown action') {
     let client: RedisClientType
     try {
       client = await this.pool.acquire()
@@ -93,53 +93,32 @@ class RedisCache extends Cache {
     }, `clear table ${redisKey}`)
   }
 
-  async keys<K extends 'default'>(table: K): Promise<string[]> {
+  async* keys(table: string) {
     const redisKey = this.getRedisKey(table, '*')
     const keyPrefix = this.getRedisKeyPrefix(table)
-
-    return this.doInPool(async (client) => {
+    yield* await this.doInPool(async (client) => {
       const allKeys = await client.keys(redisKey)
       return allKeys.map(key => key.replace(keyPrefix, ''))
     })
   }
 
-  values<K extends 'default'>(table: K): Promise<Tables[K][]> {
+  async* values(table: string) {
     const redisKey = this.getRedisKey(table, '*')
-
-    return this.doInPool(async (client) => {
+    yield* await this.doInPool(async (client) => {
       const allKeys = await client.keys(redisKey)
       const allValues = await Promise.all(allKeys.map(key => client.get(key)))
       return allValues.map(value => this.decode(value))
     })
   }
 
-  entries<K extends 'default'>(table: K): Promise<Record<string, Tables[K]>> {
+  async* entries(table: string) {
     const redisKey = this.getRedisKey(table, '*')
     const keyPrefix = this.getRedisKeyPrefix(table)
-
-    return this.doInPool(async (client) => {
+    yield* await this.doInPool(async (client) => {
       const allKeys = await client.keys(redisKey)
+      // TODO optimize this
       const allValues = await Promise.all(allKeys.map(key => client.get(key)))
-      const map: Record<string, Tables[K]> = {}
-      for (let i = 0; i < allKeys.length; i++) {
-        const key = allKeys[i].replace(keyPrefix, '')
-        map[key] = this.decode(allValues[i])
-      }
-      return map
-    })
-  }
-
-  forEach<K extends 'default'>(table: K, callback: (key: string, value: Tables[K]) => void): Promise<void> {
-    const redisKey = this.getRedisKey(table, '*')
-    const keyPrefix = this.getRedisKeyPrefix(table)
-
-    return this.doInPool(async (client) => {
-      const allKeys = await client.keys(redisKey)
-      const allValues = await Promise.all(allKeys.map(key => client.get(key)))
-      for (let i = 0; i < allKeys.length; i++) {
-        const key = allKeys[i].replace(keyPrefix, '')
-        callback(key, this.decode(allValues[i]))
-      }
+      return allKeys.map((key, index) => [key.replace(keyPrefix, ''), this.decode(allValues[index])] as [string, any])
     })
   }
 }

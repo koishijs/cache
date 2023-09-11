@@ -1,5 +1,5 @@
 import { Context, Dict, Schema } from 'koishi'
-import Cache, { Tables } from '@koishijs/cache'
+import Cache from '@koishijs/cache'
 
 interface Entry {
   value: any
@@ -53,30 +53,19 @@ class MemoryCache extends Cache {
     }
   }
 
-  async keys<K extends 'default'>(table: K): Promise<string[]> {
+  async* keys(table: string) {
     const entries = this.table(table)
-
-    return Object.keys(entries)
+    yield* Object.keys(entries)
   }
 
-  async values<K extends 'default'>(table: K): Promise<Tables[K][]> {
+  async* values(table: string) {
     const entries = this.table(table)
-
-    return Object.values(entries).map(entry => entry.value)
+    yield* Object.values(entries).map(entry => entry.value)
   }
 
-  async entries<K extends 'default'>(table: K): Promise<Record<string, Tables[K]>> {
+  async* entries(table: string) {
     const entries = this.table(table)
-
-    return Object.fromEntries(Object.entries(entries).map(([key, entry]) => [key, entry.value]))
-  }
-
-  async forEach<K extends 'default'>(table: K, callback: (key: string, value: Tables[K]) => void): Promise<void> {
-    const entries = this.table(table)
-
-    for (const key in entries) {
-      callback(key, entries[key].value)
-    }
+    yield* Object.entries(entries).map(([key, entry]) => [key, entry.value] as any)
   }
 }
 

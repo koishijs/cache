@@ -1,5 +1,5 @@
 import { Context, Schema, Time } from 'koishi'
-import Cache, { Tables } from '@koishijs/cache'
+import Cache from '@koishijs/cache'
 
 declare module 'koishi' {
   interface Tables {
@@ -67,40 +67,26 @@ class DatabaseCache extends Cache {
     await this.ctx.database.remove('cache', { table, key })
   }
 
-  async keys<K extends 'default'>(table: K): Promise<string[]> {
+  async* keys(table: string) {
     const entries = await this.ctx.database.get('cache', { table }, ['expire', 'key'])
-
-    return entries
+    yield* entries
       .filter(entry => !entry.expire || +entry.expire > Date.now())
       .map(entry => entry.key)
   }
 
-  async values<K extends 'default'>(table: K): Promise<Tables[K][]> {
+  async* values(table: string) {
     const entries = await this.ctx.database.get('cache', { table }, ['expire', 'value'])
-
-    return entries
+    yield* entries
       .filter(entry => !entry.expire || +entry.expire > Date.now())
       .map(entry => this.decode(entry.value))
   }
 
-  async entries<K extends 'default'>(table: K): Promise<Record<string, Tables[K]>> {
-    const object = {}
-
-    await this.forEach(table, (key, value) => {
-      object[key] = value
-    })
-
-    return object
-  }
-
-  async forEach<K extends 'default'>(table: K, callback: (key: string, value: Tables[K]) => void): Promise<void> {
+  async* entries(table: string) {
     const entries = await this.ctx.database.get('cache', { table }, ['expire', 'key', 'value'])
-
-    entries
+    yield* entries
       .filter(entry => !entry.expire || +entry.expire > Date.now())
-      .forEach(entry => callback(entry.key, this.decode(entry.value)))
+      .map(entry => [entry.key, this.decode(entry.value)] as any)
   }
-
 }
 
 namespace DatabaseCache {
