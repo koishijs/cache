@@ -7,10 +7,15 @@
 缓存服务的用法非常简单：
 
 ```ts
-// 创建一个命名空间
-const cache = ctx.cache('foo', { maxAge: Time.hour })
-await cache.set('bar', 114514)
-await cache.get('bar') // 114514
+// 扩展 foo 表
+declare module '@koishijs/cache' {
+  interface Tables {
+    foo: number
+  }
+}
+
+await ctx.cache.set('foo', 'bar', 114514)
+await ctx.cache.get('foo', 'bar') // 114514
 ```
 
 在 [API](./api.md) 页面中可以查看更多用法。
