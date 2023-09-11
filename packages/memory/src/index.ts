@@ -3,7 +3,7 @@ import Cache from '@koishijs/cache'
 
 interface Entry {
   value: any
-  timer?: NodeJS.Timer
+  timer?: NodeJS.Timeout
 }
 
 class MemoryCache extends Cache {
@@ -52,10 +52,25 @@ class MemoryCache extends Cache {
       delete table[key]
     }
   }
+
+  async* keys(table: string) {
+    const entries = this.table(table)
+    yield* Object.keys(entries)
+  }
+
+  async* values(table: string) {
+    const entries = this.table(table)
+    yield* Object.values(entries).map(entry => entry.value)
+  }
+
+  async* entries(table: string) {
+    const entries = this.table(table)
+    yield* Object.entries(entries).map(([key, entry]) => [key, entry.value] as any)
+  }
 }
 
 namespace MemoryCache {
-  export interface Config {}
+  export interface Config { }
 
   export const Config: Schema<Config> = Schema.object({})
 }

@@ -66,6 +66,27 @@ class DatabaseCache extends Cache {
   async delete(table: string, key: string) {
     await this.ctx.database.remove('cache', { table, key })
   }
+
+  async* keys(table: string) {
+    const entries = await this.ctx.database.get('cache', { table }, ['expire', 'key'])
+    yield* entries
+      .filter(entry => !entry.expire || +entry.expire > Date.now())
+      .map(entry => entry.key)
+  }
+
+  async* values(table: string) {
+    const entries = await this.ctx.database.get('cache', { table }, ['expire', 'value'])
+    yield* entries
+      .filter(entry => !entry.expire || +entry.expire > Date.now())
+      .map(entry => this.decode(entry.value))
+  }
+
+  async* entries(table: string) {
+    const entries = await this.ctx.database.get('cache', { table }, ['expire', 'key', 'value'])
+    yield* entries
+      .filter(entry => !entry.expire || +entry.expire > Date.now())
+      .map(entry => [entry.key, this.decode(entry.value)] as any)
+  }
 }
 
 namespace DatabaseCache {

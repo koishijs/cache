@@ -27,6 +27,10 @@ class RedisCache extends Cache {
     return `${this.config.prefix}${table}:${key}`
   }
 
+  private getRedisKeyPrefix(table: string) {
+    return `${this.config.prefix}${table}:`
+  }
+
   private encode(data: any): string {
     return JSON.stringify(data)
   }
@@ -35,7 +39,7 @@ class RedisCache extends Cache {
     return JSON.parse(record)
   }
 
-  private async doInPool(action: (client: RedisClientType) => Promise<any>, errActionMessage = 'perform unknown action') {
+  private async doInPool<T>(action: (client: RedisClientType) => Promise<T>, errActionMessage = 'perform unknown action') {
     let client: RedisClientType
     try {
       client = await this.pool.acquire()
@@ -87,6 +91,35 @@ class RedisCache extends Cache {
       const allKeys = await client.keys(redisKey)
       await client.del(allKeys)
     }, `clear table ${redisKey}`)
+  }
+
+  async* keys(table: string) {
+    const redisKey = this.getRedisKey(table, '*')
+    const keyPrefix = this.getRedisKeyPrefix(table)
+    yield* await this.doInPool(async (client) => {
+      const allKeys = await client.keys(redisKey)
+      return allKeys.map(key => key.replace(keyPrefix, ''))
+    })
+  }
+
+  async* values(table: string) {
+    const redisKey = this.getRedisKey(table, '*')
+    yield* await this.doInPool(async (client) => {
+      const allKeys = await client.keys(redisKey)
+      const allValues = await Promise.all(allKeys.map(key => client.get(key)))
+      return allValues.map(value => this.decode(value))
+    })
+  }
+
+  async* entries(table: string) {
+    const redisKey = this.getRedisKey(table, '*')
+    const keyPrefix = this.getRedisKeyPrefix(table)
+    yield* await this.doInPool(async (client) => {
+      const allKeys = await client.keys(redisKey)
+      // TODO optimize this
+      const allValues = await Promise.all(allKeys.map(key => client.get(key)))
+      return allKeys.map((key, index) => [key.replace(keyPrefix, ''), this.decode(allValues[index])] as [string, any])
+    })
   }
 }
 
