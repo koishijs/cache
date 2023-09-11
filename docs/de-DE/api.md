@@ -2,24 +2,17 @@
 
 ## 公开方法
 
-### ctx.cache(table?, options?)
+### ctx.cache.get(table, key)
 
-- **table:** `string` 命名空间
-- **options:** `TableConfig` 缓存配置
-  - **options.maxAge:** `number` 默认的缓存时间 (毫秒)
-- 返回值: `CacheTable`
-
-创建一个缓存表。下面的方法都可以在缓存表上访问。
-
-### table.get(key)
-
+- **table:** `string` 表名
 - **key:** `string` 键名
 - 返回值: `Promise<any>`
 
 获取缓存数据。
 
-### table.set(key, value, maxAge?)
+### ctx.cache.set(table, key, value, maxAge?)
 
+- **table:** `string` 表名
 - **key:** `string` 键名
 - **value:** `any` 缓存数据
 - **maxAge:** `number` 缓存时间 (毫秒)
@@ -27,32 +20,46 @@
 
 设置缓存数据。当未设置 `maxAge` 时，将使用缓存表的设置。
 
-### table.delete(key)
+### ctx.cache.delete(table, key)
 
+- **table:** `string` 表名
 - **key:** `string` 键名
 - 返回值: `Promise<void>`
 
 删除缓存数据。
 
-### table.clear()
+### ctx.cache.clear(table)
 
+- **table:** `string` 表名
 - 返回值: `Promise<void>`
 
 清空缓存表。
 
-## 抽象方法
+### ctx.cache.keys(table)
 
-要实现资源存储服务，你需要创建一个 Cache 的派生类。并逐一实现以下方法：
+- **table:** `string` 表名
+- 返回值: `AsyncIterable<string>`
 
-```ts
-import Cache from '@koishijs/cache'
+获取缓存表的所有键名。
 
-export default class MyCache extends Cache {
-  async get(table: string, key: string): Promise<any>
-  async set(table: string, key: string, value: any, maxAge?: number): Promise<void>
-  async delete(table: string, key: string): Promise<void>
-  async clear(table: string): Promise<void>
-}
-```
+### ctx.cache.values(table)
 
-请注意上述方法与缓存表的方法的区别：要实现的抽象方法比缓存表的方法多了一个 `table` 参数。
+- **table:** `string` 表名
+- 返回值: `AsyncIterable<any>`
+
+获取缓存表的所有值。
+
+### ctx.cache.entries(table)
+
+- **table:** `string` 表名
+- 返回值: `AsyncIterable<[string, any]>`
+
+获取缓存表的所有键值对。
+
+### ctx.cache.forEach(table, callback)
+
+- **table:** `string` 表名
+- **callback:** `(value: any, key: string) => Awaitable<void>`
+- 返回值: `Promise<void>`
+
+遍历缓存表。
