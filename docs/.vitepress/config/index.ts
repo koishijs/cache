@@ -10,7 +10,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    indexName: 'cache',
+    indexName: 'koishi-cache',
     socialLinks: {
       github: 'https://github.com/koishijs/cache',
     },
