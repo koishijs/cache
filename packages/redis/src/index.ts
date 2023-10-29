@@ -1,11 +1,9 @@
 import { createPool } from 'generic-pool'
-import { Context, isNullable, Logger, Schema } from 'koishi'
+import { Context, isNullable, Schema } from 'koishi'
 import { createClient, RedisClientOptions, RedisClientType } from 'redis'
 import Cache from '@koishijs/cache'
 
 class RedisCache extends Cache {
-  private logger = new Logger('redis')
-
   private pool = createPool({
     create: async () => {
       const client = createClient({

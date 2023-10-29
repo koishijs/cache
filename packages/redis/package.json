@@ -1,11 +1,12 @@
 {
   "name": "koishi-plugin-cache-redis",
   "description": "Redis Cache Service",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "author": "Shigma <shigma10826@gmail.com>",
   "contributors": [
@@ -44,10 +45,10 @@
     }
   },
   "peerDependencies": {
-    "koishi": "^4.15.0"
+    "koishi": "^4.15.3"
   },
   "devDependencies": {
-    "koishi": "^4.15.0"
+    "koishi": "^4.15.3"
   },
   "dependencies": {
     "@koishijs/cache": "^2.1.0",

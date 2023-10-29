@@ -15,7 +15,7 @@ interface CacheEntry {
 }
 
 class DatabaseCache extends Cache {
-  static using = ['database'] as const
+  static inject = ['database'] as const
 
   constructor(ctx: Context, private config: DatabaseCache.Config) {
     super(ctx)
