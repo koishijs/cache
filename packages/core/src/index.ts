@@ -11,6 +11,8 @@ export interface Tables {
 }
 
 abstract class Cache extends Service {
+  static [Service.provide] = 'cache'
+
   constructor(ctx: Context) {
     super(ctx, 'cache')
   }

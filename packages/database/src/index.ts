@@ -17,7 +17,7 @@ interface CacheEntry {
 class DatabaseCache extends Cache {
   static inject = ['database']
 
-  constructor(ctx: Context, private config: DatabaseCache.Config) {
+  constructor(ctx: Context, public config: DatabaseCache.Config) {
     super(ctx)
 
     ctx.model.extend('cache', {

@@ -17,7 +17,7 @@ class RedisCache extends Cache {
     },
   })
 
-  constructor(ctx: Context, private config: RedisCache.Config) {
+  constructor(ctx: Context, public config: RedisCache.Config) {
     super(ctx)
   }
 
