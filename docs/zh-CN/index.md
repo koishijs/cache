@@ -7,7 +7,7 @@
 缓存服务的用法非常简单：
 
 ```ts
-import {} from "@koishijs/cache";
+import {} from '@koishijs/cache'
 
 // 扩展 foo 表
 declare module '@koishijs/cache' {
