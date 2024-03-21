@@ -1,0 +1,75 @@
+{
+  "description": "Koishi 缓存服务",
+  "head": [
+    [
+      "link",
+      {
+        "rel": "icon",
+        "href": "https://koishi.chat/logo.png"
+      }
+    ],
+    [
+      "link",
+      {
+        "rel": "manifest",
+        "href": "/manifest/en-US.json"
+      }
+    ],
+    [
+      "meta",
+      {
+        "name": "theme-color",
+        "content": "#5546a3"
+      }
+    ]
+  ],
+  "themeConfig": {
+    "editLink": {
+      "text": "Translate this page on Crowdin",
+      "pattern": "https://crowdin.com/translate/koishi/:id/zhcn-enus"
+    },
+    "sidebar": {
+      "/": [
+        {
+          "text": "Developing Guide",
+          "items": [
+            {
+              "text": "Introduction",
+              "link": "/"
+            },
+            {
+              "text": "API",
+              "link": "/api"
+            }
+          ]
+        },
+        {
+          "text": "Plugins",
+          "items": [
+            {
+              "text": "Database",
+              "link": "/plugins/database"
+            },
+            {
+              "text": "Memory",
+              "link": "/plugins/memory"
+            },
+            {
+              "text": "Redis",
+              "link": "/plugins/redis"
+            }
+          ]
+        },
+        {
+          "text": "More",
+          "items": [
+            {
+              "text": "Koishi 官网",
+              "link": "https://koishi.chat"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

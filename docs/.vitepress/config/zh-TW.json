@@ -1,0 +1,75 @@
+{
+  "description": "Koishi 缓存服务",
+  "head": [
+    [
+      "link",
+      {
+        "rel": "icon",
+        "href": "https://koishi.chat/logo.png"
+      }
+    ],
+    [
+      "link",
+      {
+        "rel": "manifest",
+        "href": "/manifest/zh-TW.json"
+      }
+    ],
+    [
+      "meta",
+      {
+        "name": "theme-color",
+        "content": "#5546a3"
+      }
+    ]
+  ],
+  "themeConfig": {
+    "editLink": {
+      "text": "在 Crowdin 上翻譯此頁面",
+      "pattern": "https://crowdin.com/translate/koishi/:id/zhcn-zhtw"
+    },
+    "sidebar": {
+      "/": [
+        {
+          "text": "指南",
+          "items": [
+            {
+              "text": "介紹",
+              "link": "/"
+            },
+            {
+              "text": "API",
+              "link": "/api"
+            }
+          ]
+        },
+        {
+          "text": "插件",
+          "items": [
+            {
+              "text": "Database",
+              "link": "/plugins/database"
+            },
+            {
+              "text": "Memory",
+              "link": "/plugins/memory"
+            },
+            {
+              "text": "Redis",
+              "link": "/plugins/redis"
+            }
+          ]
+        },
+        {
+          "text": "更多",
+          "items": [
+            {
+              "text": "Koishi 官网",
+              "link": "https://koishi.chat"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
